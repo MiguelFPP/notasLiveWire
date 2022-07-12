@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,9 @@ Route::middleware([
 /* notas */
 Route::get('/notas/create', [NoteController::class, 'create'])->middleware('auth', 'verified')->name('note.create');
 Route::get('/note/edit/{note}', [NoteController::class, 'edit'])->middleware('auth', 'verified')->name('note.edit');
+
+/* lista */
+Route::get('/listas', TaskController::class)->middleware('auth', 'verified')->name('task.index');
 
 /* subir imagenes */
 Route::post('/image/upload', [ImageController::class, 'upload'])->name('images.upload');

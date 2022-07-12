@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Note;
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -25,5 +26,6 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->count(1)->create();
         Note::factory()->count(5)->create();
+        Task::factory()->count(6)->create();
     }
 }
