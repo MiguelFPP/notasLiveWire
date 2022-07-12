@@ -23,9 +23,18 @@ class Index extends Component
         $note->delete();
     }
 
+    public function notePinged(Note $note)
+    {
+        $note->pinged = !$note->pinged;
+        $note->save();
+    }
+
     public function render()
     {
-        $notes = Note::where('user_id', auth()->id())->get();
+        $notes = Note::where('user_id', auth()->id())
+            ->orderBy('pinged', 'desc')
+            ->orderBy('id', 'desc')
+            ->get();
         return view('livewire.note.index', [
             'notes' => $notes
         ]);

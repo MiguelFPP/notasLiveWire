@@ -13,6 +13,7 @@
                 </a>
                 <p class="mb-3 font-normal text-gray-700">{{ Str::limit($note->content, 50) }}</p>
 
+
                 <div class="flex justify-end mt-5">
                     <a href="{{ route('note.edit', $note) }}"
                         class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-2">
@@ -23,6 +24,11 @@
                         class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                         Eliminar
                         <i class="fa-solid fa-trash ml-1"></i>
+                    </button>
+
+                    <button wire:click="notePinged({{ $note }})" wire:loading.attr="disabled"
+                        class="inline-flex items-center py-2 px-3 text-sm font-medium text-center ml-2 @if ($note->pinged) bg-green-700 rounded-md @endif">
+                        <i class="fa-solid fa-thumbtack @if ($note->pinged) text-white @endif"></i>
                     </button>
                 </div>
             </div>
