@@ -4,40 +4,42 @@ namespace App\Http\Livewire\Note;
 
 use App\Models\Note;
 use App\Models\Image;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Illuminate\Support\Facades\Storage;
 
-class Create extends Component
+class Edit extends Component
 {
-
+    public $note;
     public $title;
     public $content;
     public $images = [];
+
+    public function mount(Note $note)
+    {
+        $this->title = $note->title;
+        $this->content = $note->content;
+        /* toma el pack de las imagenes y lo inserta en el array */
+        $this->images = $note->images->pluck('path')->toArray();
+    }
 
     public function addImage($image)
     {
         $this->images[] = $image;
     }
 
-    /* public function removeImage($image)
-    {
-        $this->images = array_diff($this->images, [$image]);
-    } */
-
     public function save()
     {
-        $note = Note::create([
+        $this->note->update([
             'title' => $this->title,
             'content' => $this->content,
-            'user_id' => auth()->user()->id,
         ]);
 
         foreach ($this->images as $image) {
             $img = Image::where('path', $image)->first();
 
-            if (strpos($note->content, $image)) {
+            if (strpos($this->note->content, $image)) {
                 $img->update([
-                    'imageable_id' => $note->id,
+                    'imageable_id' => $this->note->id,
                     'imageable_type' => Note::class,
                 ]);
             } else {
@@ -46,12 +48,12 @@ class Create extends Component
             }
         }
 
-        $this->emit('noteCreated');
+        $this->emit('noteUpdated');
         return redirect()->route('dashboard');
     }
 
     public function render()
     {
-        return view('livewire.note.create');
+        return view('livewire.note.edit');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Note;
 use Illuminate\Http\Request;
 
 class NoteController extends Controller
@@ -13,5 +14,9 @@ class NoteController extends Controller
 
     public function create(){
         return view('note.create');
+    }
+
+    public function edit(Note $note){
+        return view('note.edit', compact('note'));
     }
 }

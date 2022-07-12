@@ -37,6 +37,7 @@ Route::middleware([
 
 /* notas */
 Route::get('/notas/create', [NoteController::class, 'create'])->middleware('auth', 'verified')->name('note.create');
+Route::get('/note/edit/{note}', [NoteController::class, 'edit'])->middleware('auth', 'verified')->name('note.edit');
 
 /* subir imagenes */
 Route::post('/image/upload', [ImageController::class, 'upload'])->name('images.upload');

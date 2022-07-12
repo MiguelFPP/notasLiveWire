@@ -19,19 +19,9 @@
                 console.error(error);
             });">
             <div x-ref="ckeditor">
+                {!! $this->content !!}
             </div>
         </div>
-        {{-- <div>
-            <x-jet-label for="descripcion" :value="__('Descripcion Puesto')" />
-
-            <textarea wire:model="descripcion" id="descripcion" cols="30" rows="10"
-                class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full"
-                placeholder=" Descripcion del puesto"></textarea>
-            @error('descripcion')
-                <livewire:mostrar-alerta :message="$message" />
-            @enderror
-        </div> --}}
-
         <x-jet-button class="mt-3">
             Guardar Nota
         </x-jet-button>
@@ -41,14 +31,13 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         /* alerta */
-        Livewire.on('noteCreated', () => {
+        Livewire.on('noteUpdated', () => {
             Swal.fire(
-                'Guardado!',
-                'La nota ha sido creada.',
+                'Ediatado!',
+                'La nota ha sido Editada.',
                 'success'
             )
         });
-
         class MyUploadAdapter {
             constructor(loader) {
                 this.loader = loader;
