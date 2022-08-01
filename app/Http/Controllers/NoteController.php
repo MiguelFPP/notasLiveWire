@@ -17,6 +17,7 @@ class NoteController extends Controller
     }
 
     public function edit(Note $note){
+        $this->authorize('update', $note);
         return view('note.edit', compact('note'));
     }
 }
