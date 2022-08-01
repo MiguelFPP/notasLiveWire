@@ -27,7 +27,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => 'Miguel FPP',
-            'email' => 'miguel@miguel.com',
+            'email' => 'miguel@gmail.com',
             'email_verified_at' => Date::now(),
             'password' => bcrypt('12345678'), // password
             /* 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password */
